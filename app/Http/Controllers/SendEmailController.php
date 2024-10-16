@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\SendEmailRequest;
 use App\Mail\SendEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\SendEmailRequest;
+use App\Http\Requests\SendEmailAttachRequest;
 
 class SendEmailController extends Controller
 {
@@ -18,7 +19,8 @@ class SendEmailController extends Controller
     {
         try {
             $toEmail = $request->email;
-            $message = `Hi $request->name, $request->message`;
+            $name = $request->name;
+            $message = "Hi $name, {$request->message}";
             $subject = $request->subject;
 
             Mail::to($toEmail)->send(new SendEmail($message, $subject));

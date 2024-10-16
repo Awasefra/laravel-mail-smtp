@@ -36,7 +36,14 @@ function submitForem(formElement) {
     }).then((result) => {
         if (result.isConfirmed) {
             var formData = new FormData(formElement);
-            $("#loading-spinner, #loading-overlay").show();
+            Swal.fire({
+                title: "Loading...",
+                text: "Please wait while we process your request.",
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                },
+            });
             $.ajax({
                 type: "POST",
                 url: "/mails/send",
@@ -76,7 +83,7 @@ function submitForem(formElement) {
                     }
                 },
                 complete: function () {
-                    $("#loading-spinner, #loading-overlay").hide();
+                   
                 },
             });
         }
