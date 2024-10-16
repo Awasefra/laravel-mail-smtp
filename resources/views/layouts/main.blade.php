@@ -74,6 +74,10 @@
                             <a class="nav-link {{ request()->is('mails/attachs') ? 'active' : '' }}"
                                 href="{{ route('mails.attachs.') }}">Send Email with Attachment</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('mails/payrolls') ? 'active' : '' }}"
+                                href="{{ route('mails.payrolls.') }}">Payroll</a>
+                        </li>
                     </ul>
                 </div>
             </div>
