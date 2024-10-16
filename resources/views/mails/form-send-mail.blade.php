@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
 
-<div class="container mt-5">
+<div class="container mb-5">
     <div class="card shadow-sm">
         <div class="card-body">
             <h2 class="card-title mb-4">Send Email</h2>
