@@ -36,7 +36,6 @@
         </div>
     </div>
 </div>
-@include('components.spinner-loading')
 <script src="js/send-email.js">
 </script>
 @endsection
