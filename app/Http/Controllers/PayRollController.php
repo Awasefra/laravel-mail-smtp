@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use App\Jobs\SendMailJob;
 use Illuminate\Http\Request;
 use App\Mail\SendEmailPayroll;
 use Illuminate\Support\Facades\Mail;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use App\Http\Requests\SendPayrollEmailRequest;
+use App\Http\Requests\SendPayrollBatchEmailRequest;
 
 class PayRollController extends Controller
 {
@@ -45,5 +47,21 @@ class PayRollController extends Controller
 
         $pdf = PDF::loadView('payrolls.slip-gaji', $data);
         return $pdf->output();
+    }
+
+    public function indexBatch()
+    {
+        return view('payrolls.form-payroll-batch');
+    }
+
+    public function sendBatch(SendPayrollBatchEmailRequest $request)
+    {
+        try {
+            dispatch(new SendMailJob($request->emails, $request->names, $request->message, $request->subject));
+
+            return response()->json(['message' => 'Mail has been sent!'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Mail not sent! ' . $e->getMessage()], 500);
+        }
     }
 }

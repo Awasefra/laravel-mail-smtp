@@ -21,5 +21,9 @@ Route::prefix('mails')->name('mails.')->group(function () {
     Route::prefix('payrolls')->name('payrolls.')->controller(PayRollController::class)->group(function () {
         Route::get('/', 'index');
         Route::post('/send', 'send')->name('send');
+        Route::prefix('batch')->name('batch.')->group(function () {
+            Route::get('/', 'indexBatch');
+            Route::post('/send', 'sendBatch')->name('send');
+        });
     });
 });

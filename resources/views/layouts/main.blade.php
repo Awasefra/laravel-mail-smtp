@@ -78,6 +78,10 @@
                             <a class="nav-link {{ request()->is('mails/payrolls') ? 'active' : '' }}"
                                 href="{{ route('mails.payrolls.') }}">Payroll</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('mails/payrolls/batch') ? 'active' : '' }}"
+                                href="{{ route('mails.payrolls.batch.') }}">Payroll Batch</a>
+                        </li>
                     </ul>
                 </div>
             </div>
