@@ -38,9 +38,9 @@ class PayRollController extends Controller
         $data = [
             'employee_name' => $name,
             'position' => 'Staff IT',
-            'basic_salary' => config('payroll.basic_salary', 8000000),
-            'allowance' => config('payroll.allowance', 500000),
-            'deduction' => config('payroll.deduction', 200000),
+            'basic_salary' => 8000000,
+            'allowance' => 500000,
+            'deduction' => 200000,
         ];
 
         $pdf = PDF::loadView('payrolls.slip-gaji', $data);
