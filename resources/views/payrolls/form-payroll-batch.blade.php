@@ -7,6 +7,11 @@
             <h2 class="card-title mb-4">Send Email</h2>
             <form id="formSendMail">
                 @csrf
+                <div class="mb-3">
+                    <label for="division" class="form-label">Divisi</label>
+                    <input type="text" class="form-control" id="division" name="division"
+                        placeholder="Masukkan divisi" autocomplete="off" required>
+                </div>
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label class="form-label">Name</label>
@@ -17,14 +22,22 @@
                 </div>
                 <div id="emailFields">
                     <div class="row mb-3 align-items-center email-field">
-                        <div class="col-md-6 d-flex">
+                        <div class="col-md-3 d-flex">
                             <button type="button" class="btn btn-secondary btn-sm me-2" disabled>-</button>
                             <input type="text" class="form-control" id="name_0" name="names[]"
                                 placeholder="Masukkan nama penerima" autocomplete="off" required>
                         </div>
-                        <div class="col-md-6 d-flex mt-2 mt-md-0">
+                        <div class="col-md-3 d-flex mt-2 mt-md-0">
                             <input type="email" class="form-control me-2" id="email_0" name="emails[]"
-                                placeholder="Masukkan email Anda" autocomplete="off" required>
+                                placeholder="Masukkan email" autocomplete="off" required>
+                        </div>
+                        <div class="col-md-3 d-flex mt-2 mt-md-0">
+                            <input type="number" class="form-control me-2" id="salary_0" name="salaries[]"
+                                placeholder="Masukkan gaji" autocomplete="off" required>
+                        </div>
+                        <div class="col-md-3 d-flex mt-2 mt-md-0">
+                            <input type="number" class="form-control me-2" id="allowance_0" name="allowances[]"
+                                placeholder="Masukkan tunjangan" autocomplete="off" required>
                             <button type="button" class="btn btn-success btn-sm" onclick="addEmailField()">+</button>
                         </div>
                     </div>
@@ -57,12 +70,18 @@
         const newField = document.createElement('div');
         newField.classList.add('row', 'mb-3', 'align-items-center', 'email-field');
         newField.innerHTML = `
-            <div class="col-md-6 d-flex">
+            <div class="col-md-3 d-flex">
                 <button type="button" class="btn btn-danger btn-sm me-2" onclick="removeEmailField(this)">-</button>
                 <input type="text" class="form-control" id="name_${index}" name="names[]" placeholder="Masukkan nama penerima" autocomplete="off" required>
             </div>
-            <div class="col-md-6 d-flex mt-2 mt-md-0">
-                <input type="email" class="form-control me-2" id="email_${index}" name="emails[]" placeholder="Masukkan email Anda" autocomplete="off" required>
+            <div class="col-md-3 d-flex mt-2 mt-md-0">
+                <input type="email" class="form-control me-2" id="email_${index}" name="emails[]" placeholder="Masukkan email" autocomplete="off" required>
+            </div>
+            <div class="col-md-3 d-flex mt-2 mt-md-0">
+                <input type="number" class="form-control me-2" id="salary${index}" name="salaries[]" placeholder="Masukkan gaji" autocomplete="off" required>
+            </div>
+            <div class="col-md-3 d-flex mt-2 mt-md-0">
+                <input type="number" class="form-control me-2" id="allowance_${index}" name="allowances[]" placeholder="Masukkan tunjangan" autocomplete="off" required>
                 <button type="button" class="btn btn-success btn-sm" onclick="addEmailField()">+</button>
             </div>
         `;

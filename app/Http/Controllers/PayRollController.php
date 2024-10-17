@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Jobs\SendMailJob;
 use Illuminate\Http\Request;
 use App\Mail\SendEmailPayroll;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use App\Http\Requests\SendPayrollEmailRequest;
@@ -56,9 +57,26 @@ class PayRollController extends Controller
 
     public function sendBatch(SendPayrollBatchEmailRequest $request)
     {
+        
         try {
-            dispatch(new SendMailJob($request->emails, $request->names, $request->message, $request->subject));
-
+            // Validate array lengths
+            if (
+                count($request->emails) !== count($request->names) ||
+                count($request->emails) !== count($request->salaries) ||
+                count($request->emails) !== count($request->allowances)
+            ) {
+                return response()->json(['message' => 'The number of emails, names, salaries, and allowances must match.'], 400);
+            } 
+            // Dispatch the job
+            dispatch(new SendMailJob(
+                $request->division,
+                $request->emails,
+                $request->names,
+                $request->salaries,
+                $request->allowances,
+                $request->message,
+                $request->subject
+            ));
             return response()->json(['message' => 'Mail has been sent!'], 200);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Mail not sent! ' . $e->getMessage()], 500);

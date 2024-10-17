@@ -22,8 +22,11 @@ class SendPayrollBatchEmailRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'division' => 'required',
             'names' => 'required|array',
             'emails' => 'required|array',
+            'salaries' => 'required|array',
+            'allowances' => 'required|array',
             'subject' => 'required',
             'message' => 'required'
         ];
