@@ -13,11 +13,17 @@
                         placeholder="Masukkan divisi" autocomplete="off" required>
                 </div>
                 <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label class="form-label">Name</label>
+                    <div class="col-md-3">
+                        <label class="form-label">Nama</label>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <label class="form-label">Email</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Gaji</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Tunjangan</label>
                     </div>
                 </div>
                 <div id="emailFields">
